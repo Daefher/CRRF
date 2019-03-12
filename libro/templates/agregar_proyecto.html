@@ -1,0 +1,79 @@
+{% extends 'base_layout.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="main">
+  <div class="main-content">
+    <div class="container-fluid">
+  	   <h3 class="page-title">Agregar Documento</h3>
+  			  <div class="row">
+            <div class="col-md-12">
+              <div class="panel">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Ingresa los datos requeridos</h3>
+								</div>
+                <div class="col-6 offset-6">
+                  <form class="" action="{% url 'libro:proyect-create' %}" method="post">
+                  <div class="panel-body">
+                    {% csrf_token %}                    
+                    <div class="form-row">
+                      <div class="form-group col-md-4 mb-0">
+                        {{form.folio_inicial|as_crispy_field }}
+                      </div>                      
+                      <div class="form-group col-md-4 mb-0">
+                        {{form.no_formatos|as_crispy_field }}
+                      </div>
+                      <div class="form-group col-md-4 mb-0">
+                        {{form.volumen|as_crispy_field }}
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6 mb-0">
+                        {{form.titular|as_crispy_field }}
+                      </div>
+                      <div class="form-group col-md-6 mb-0">
+                        {{form.especie|as_crispy_field }}
+                      </div>                     
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-4 mb-0">
+                        {{form.unidad_de_medida|as_crispy_field }}
+                      </div>
+                      <div class="form-group col-md-4 mb-0">
+                        {{form.no_oficio|as_crispy_field }}
+                      </div>
+                      <div class="form-group col-md-4 mb-0">
+                        {{form.producto|as_crispy_field }}
+                      </div>                                            
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-4" >
+                        {{form.fecha|as_crispy_field }}                        
+                      </div>
+                      <div class="form-group col-md-4 ">
+                        {{form.vigencia|as_crispy_field }}
+                      </div>                                                                 
+                    </div>
+                  </div>
+                  <div class="panel-footer">
+                    <div class="row">
+                      <div class="col-md-12 text-right">
+                        <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+								</div>
+								</div>
+							</div>
+          </div>
+        </div>
+      </div>
+    </div>
+     {% include "Scripts.html" %}        
+<script>
+    const EnaInput = document.querySelector("input[name=enajenante]");
+    $('#id_fecha').datepicker({ showOnFocus: false });
+    $('#id_vigencia').datepicker({ showOnFocus: false });    
+</script>
+
+{% endblock %}

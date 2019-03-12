@@ -1,0 +1,66 @@
+{% extends 'base_layout.html' %}
+{% load static from staticfiles%}
+{% block content %}
+<div class="main">
+<div class="main-content">
+<div class="container-fluid">
+  <h3 class="page-title">Folios</h3>
+<div class="row">
+ <div class="col-md-12">
+  <div class="panel">
+      <div class="panel-heading">
+				<h3 class="panel-title">Folios Registrados</h3>
+			</div>
+			<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table project-table" id="TPeople">
+				<thead>
+					 <tr>
+             <th>Folio In </th>
+             <th>Folio Final</th>
+             <th>No.de formato</th>
+             <th>Volumen</th>
+             <th>Ud. Medida</th>
+             <th>Especie</th>
+             <th>Producto</th>
+             <th>Titular</th>
+						 <th>Fecha</th>
+						 <th>No. Oficio</th>
+						 <th>Vigencia</th>
+						</tr>
+					</thead>
+					<tbody>   
+							{% for instance in object_list %}
+								<tr>
+									<td>{{instance.folio_inicial}}</td>
+									<td>{{instance.folio_final}}</td>
+									<td>{{instance.no_formatos}}</td>
+									<td>{{instance.volumen}}</td>
+									<td>{{instance.unidad_de_medida}}</td>
+									<td>{{instance.especie}}</td>
+									<td>{{instance.producto}}</td>
+									<td>{{instance.titular}}</td>
+									<td>{{instance.fecha}}</td>
+									<td>{{instance.no_oficio}}</td>
+									<td>{{instance.vigencia}}</td>
+								</tr>
+							{%endfor%}
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+ {% include "Scripts.html" %}
+
+<script>
+  
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="main">
+    <div class="main-content">
+    <div class="container-fluid">
+      <h3 class="page-title">{{proyect.titular}} </h3>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="panel">
+    			<div class="profile-detail">
+            <div class="profile-info">
+							<ul class="list-unstyled list-justify">
+                <h4 class="heading">Detalles</h4>
+									<li>Folio <span>{{object.folio_inicial}}</span></li>
+									<li>Tomo <span>{{object.folio_final}}</span></li>
+									<li>Enajenante <span>{{object.no_formatos}}</span></li>
+									<li>Adquirente <span>{{object.volumen}}</span></li>                  
+									<li>
+										<div class="col-sm-4 text-right"><a href="{% url 'libro:proyect-update' id=object.pk %}" class="btn btn-primary">Editar</a>
+										<div class="col-sm-8 text-right">
+											<form action="{% url 'libro:proyect-delete' id=object.pk %}" method="post">
+												{% csrf_token %}												
+												<button type="submit" class="btn btn-danger">Eliminar</button>
+											</form>
+										</div>
+									</li>
+
+							</ul>
+						</div>
+    			</div>
+    		</div>
+      </div>
+    </div>
+		
+		</div>
+		</div>
+    </div>
+    </div>
+    </div>
+		
+  </div> 
+   {% include "Scripts.html" %}
+
+	<script type="text/javascript">
+		var progreso = "{{progress}}";
+		var Noterminado =  "{{NoTerminado}}";
+		var terminados = "{{terminados}}";
+		var actual;
+		if(progreso != 0){
+			actual = terminados*100/progreso;
+		}else{
+			actual = 0;
+		}
+		console.log(progreso,Noterminado,terminados,actual);
+
+		document.getElementById('barra').style.width = actual+"%";
+	</script>
+
+{% endblock %}
+
