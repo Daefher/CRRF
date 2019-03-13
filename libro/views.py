@@ -39,11 +39,10 @@ class proyect_update_view(UpdateView):
 
     def get_object(self):
         id_ = self.kwargs.get('id')
-        return get_object_or_404(proyect, id=id_)    
-
+        return get_object_or_404(proyect, id=id_)
+  
 class proyect_list_view(ListView):
-    template_name = 'lista_proyectos.html'
-    queryset = proyect.objects.all()
+    template_name = 'lista_proyectos.html'    
 
     def get_queryset(self):
         query = self.request.GET.get('q')        
@@ -52,8 +51,9 @@ class proyect_list_view(ListView):
                 Q(folio_inicial__icontains=query)|
                 Q(titular__icontains=query)
                 ).distinct()
-            return queryset_list           
-        return self.queryset
+            return queryset_list  
+        query = proyect.objects.all()         
+        return query
 
 class proyect_detail_view(DetailView):
     template_name = 'proyecto_detalles.html'

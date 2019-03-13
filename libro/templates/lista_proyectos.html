@@ -13,10 +13,10 @@
 			</div>
 			<div class="panel-body">
 			<div class="table-responsive">
-				<table class="table project-table" id="TPeople">
+				<table class="table table-hover project-table" id="TPeople">
 				<thead>
 					 <tr>
-             <th>Folio In </th>
+             <th>Folio Inicial</th>
              <th>Folio Final</th>
              <th>No.de formato</th>
              <th>Volumen</th>
@@ -31,7 +31,7 @@
 					</thead>
 					<tbody>   
 							{% for instance in object_list %}
-								<tr>
+								<tr onclick="window.location.href = '{% url 'libro:proyect-detail' id=instance.pk  %}';">
 									<td>{{instance.folio_inicial}}</td>
 									<td>{{instance.folio_final}}</td>
 									<td>{{instance.no_formatos}}</td>
