@@ -28,13 +28,43 @@
 						<div class="row">
 							<div class="col-md-6 text-right">
 								<a href="{% url 'libro:proyect-update' id=object.pk %}" class="btn btn-primary"><i class="lnr lnr-sync"></i> Editar</a>
-							</div>
-							
+							</div>							
 							<div class="col-md-6 ">
-								<form action="{% url 'libro:proyect-delete' id=object.pk %}" method="post">
-									{% csrf_token %}										
-									<button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>									
-								</form>
+							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash-o"></i> Borrar</button>
+							<div class="modal fade" id="myModal">
+								<div class="modal-dialog">
+									<div class="modal-content">
+
+										<!-- Modal Header -->
+										<div class="modal-header">
+											<h4 class="modal-title">¿Estas Seguro?</h4>
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+										</div>
+
+										<!-- Modal body -->
+										<div class="modal-body">
+											Se va a eliminar el registro de {{proyect.titular}} con folio {{object.folio_inicial}}
+										</div>
+
+										<!-- Modal footer -->
+									<div class="modal-footer">
+										<div class="row">
+											<div class="col-sm-9">
+												<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+											</div>
+											<div class="col-sm-3">
+												<form action="{% url 'libro:proyect-delete' id=object.pk %}" method="post">
+													{% csrf_token %}										
+													<button type="submit" class="btn btn-danger"> Confirmar</button>									
+												</form> 
+											</div>
+										</div>
+									</div>
+
+									</div>
+								</div>
+							</div>
+								 
 							</div>						
 						</div>
 					</div>
@@ -50,6 +80,14 @@
 					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero suscipit, laborum esse voluptatibus aut neque. Neque, excepturi eaque consectetur explicabo suscipit exercitationem ad ullam, numquam ipsa earum facilis, tempora corporis?</p>
 				</div>
 			</div>
+			{% if messages %}
+				{%for message in messages %}
+				<div class="alert alert-{{message.tags}} alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<i class="fa fa-check-circle"></i> {{message}}
+				</div>		
+				{% endfor %}
+			{% endif %}
 		</div>		
 		</div>
 		</div>
