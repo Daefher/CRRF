@@ -4,6 +4,8 @@ from .models import proyect
 from .forms import Proyect_model_form
 from django.urls import reverse, reverse_lazy
 from django.views import View
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from django.views.generic import (
     CreateView,
     DetailView,
@@ -26,16 +28,18 @@ class proyect_create_view(CreateView):
             form.instance.usuario = request.user
             folio_inicial = form.data['folio_inicial']
             form.instance.folio_final = int(folio_inicial) + (int(form.data['no_formatos'])-1)            
+            messages.success(request, "Registro creado correctamente")
             form.save()
             return redirect(reverse("libro:proyect-detail", kwargs={"id":form.instance.id} ) )                              
         context = {"form":form}
         return render(request, self.template_name,context)
     
 
-class proyect_update_view(UpdateView):
+class proyect_update_view(SuccessMessageMixin,UpdateView):
     template_name = 'agregar_proyecto.html'
     form_class = Proyect_model_form
     queryset = proyect.objects.all()  
+    success_message = "Registro actualizado exitosamente"
 
     def get_object(self):
         id_ = self.kwargs.get('id')
