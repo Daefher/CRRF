@@ -8,7 +8,7 @@
 				<div class="navbar-btn">
 					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
 				</div>
-				<form class="navbar-form navbar-left" action="" method="GET">					
+				<form class="navbar-form navbar-left" action="{% url 'libro:proyect-list' %}" method="GET">					
 					<div class="input-group">
 						<input type="text" id="buscar" name="q" class="form-control" placeholder="Buscar..." value="{{ request.GET.q }}">
 						<span class="input-group-btn">
@@ -29,14 +29,8 @@
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="lnr lnr-user"></i> <span>Perfil</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Mensajes</span></a></li>
-								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Opciones</span></a></li>
-								<li>
-									<form class="" action="" method ="post">
-										{% csrf_token %}
-										<i class="lnr lnr-exit" style="margin: 15px"></i>
-										<span><button style="border:none; background-color: Transparent; padding:2px; margin: 10px auto  " type="submit" >Logout</button></span>
-									</form>
-								</li>
+								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Opciones</span></a></li>	
+								<li><a href="{% url 'users:logout' %}"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>						
 							</ul>
 						</li>
 					</ul>

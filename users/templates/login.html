@@ -1,0 +1,40 @@
+{% load static from staticfiles%}
+{% load crispy_forms_tags %}
+<!doctype html>
+<html lang="es" class="fullscreen-bg">
+{% include "head.html" %}
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<div class="vertical-align-wrap">
+			<div class="vertical-align-middle">
+				<div class="auth-box ">
+					<div class="left">
+						<div class="content">
+							<div class="header">
+								<div class="logo text-center"><img src="#" alt="LOGO"></div>
+								<p class="lead">Ingresa los datos requeridos</p>
+							</div>
+							<form class="form-auth-small" method="post">
+                  				{% csrf_token %}
+                  				{{ form |crispy  }}
+								<button type="submit" class="btn btn-primary btn-lg btn-block">INICIAR SESION</button>
+							</form>
+						</div>
+					</div>
+					<div class="right">
+						<div class="overlay"></div>
+						<div class="content text">
+							<h6 class="heading">Control de remisiones y reembarques forestales</h6>
+							
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END WRAPPER -->
+</body>
+
+</html>
