@@ -5,6 +5,7 @@ app_name = 'users'
 urlpatterns = [
     path('login/', views.login_view, name="login"),
     path('logout/',views.logout_view, name="logout"),
-   # path('agregar/',views.add_user, name="register"),
+    path('agregar/',views.create_user_view.as_view(), name="register"),
+    path('usuarios/',views.user_list_view.as_view(), name='user-list'),
     
 ]

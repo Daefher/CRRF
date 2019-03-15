@@ -16,9 +16,10 @@
 						{% with url_name=request.resolver_match.url_name %}
 							<li><a href="{% url 'libro:proyect-list' %}" class="{% if url_name == 'proyect-list' %}active{% endif %}"><i class="lnr lnr-home"></i> <span>Lista de libros</span></a></li>
 							<li><a href="{%  url 'libro:proyect-create' %}" class=" {% if url_name == 'proyect-create' %}active{% endif %}"><i class="lnr lnr-pencil"></i> <span>Agregar</span></a></li>
-							<li><a href="" class="{% if url_name == 'progreso' %}active{% endif %}"><i class=" lnr lnr-chart-bars"></i> <span>Agregar Progreso</span></a></li>
+							<li><a href="" class="{% if url_name == 'progreso' %}active{% endif %}"><i class=" lnr lnr-chart-bars"></i> <span>Busqueda Avanzada</span></a></li>
 							{% if user.is_superuser %}
-							<li><a href="" class="{% if url_name == 'create' %}active{% endif %}"><i class="lnr lnr-users"></i> <span>Agregar Usuario</span></a></li>
+								<li><a href="{%  url 'users:register' %}" class="{% if url_name == 'register' %}active{% endif %}"><i class="lnr lnr-users"></i> <span>Agregar Usuario</span></a></li>
+								<li><a href="{%  url 'users:user-list' %}" class="{% if url_name == 'user-list' %}active{% endif %}"><i class=" lnr lnr-chart-bars"></i> <span>Lista de Usuarios</span></a></li>
 							{% endif %}
 						{% endwith %}
 						
