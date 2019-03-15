@@ -50,13 +50,14 @@ class proyect_update_view(LoginRequiredMixin,SuccessMessageMixin,UpdateView):
         return get_object_or_404(proyect, id=id_)
     
     def post(self,request, *args, **kwargs):
-        form = Proyect_model_form(request.POST)        
+        obj = self.get_object()
+        form = Proyect_model_form(request.POST, instance=obj)        
         if form.is_valid():
             print(request.user)
             form.instance.usuario = request.user
             folio_inicial = form.data['folio_inicial']
             form.instance.folio_final = int(folio_inicial) + (int(form.data['no_formatos'])-1)            
-            messages.success(request, "Registro creado correctamente")
+            messages.success(request, "Registro actualizado correctamente")
             form.save()
             return redirect(reverse("libro:proyect-detail", kwargs={"id":form.instance.id} ) )                              
         context = {"form":form}
@@ -71,7 +72,8 @@ class proyect_list_view(LoginRequiredMixin,ListView):
         if query:
             queryset_list = proyect.objects.filter(
                 Q(folio_inicial__icontains=query)|
-                Q(titular__icontains=query)
+                Q(titular__icontains=query) |
+                Q(especie__icontains=query)
                 ).distinct()
             return queryset_list  
         query = proyect.objects.all()         
